@@ -9,7 +9,9 @@ import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
 
 const config: ForgeConfig = {
-  packagerConfig: {},
+  packagerConfig: {
+    icon: './src/assets/icon.png'
+  },
   rebuildConfig: {},
   makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
   plugins: [
@@ -17,14 +19,17 @@ const config: ForgeConfig = {
       mainConfig,
       renderer: {
         config: rendererConfig,
+        nodeIntegration: true,
         entryPoints: [
           {
             html: './src/index.html',
-            js: './src/renderer.ts',
+            js: './src/renderer.tsx',
             name: 'main_window',
             preload: {
               js: './src/preload.ts',
             },
+            nodeIntegration: true,
+            
           },
         ],
       },

@@ -1,8 +1,8 @@
 {
-  "name": "my-new-app",
-  "productName": "my-new-app",
+  "name": "crawjud",
+  "productName": "CrawJUD",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Automação de processos judiciais",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -24,6 +24,7 @@
     "@electron-forge/maker-squirrel": "^6.0.3",
     "@electron-forge/maker-zip": "^6.0.3",
     "@electron-forge/plugin-webpack": "^6.0.3",
+    "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
@@ -31,6 +32,7 @@
     "electron": "21.3.0",
     "eslint": "^8.28.0",
     "eslint-plugin-import": "^2.26.0",
+    "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "node-loader": "^2.0.0",
     "style-loader": "^3.3.1",
@@ -39,6 +41,15 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "@electron/remote": "^2.0.8",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.15",
+    "@mui/material": "^5.10.15",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.26",
+    "electron-squirrel-startup": "^1.0.0",
+    "react-router-dom": "^6.4.3",
+    "styled-components": "^5.3.6"
   }
 }
