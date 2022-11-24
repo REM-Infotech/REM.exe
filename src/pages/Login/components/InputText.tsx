@@ -1,12 +1,23 @@
 import React from 'react'
 import styled from 'styled-components';
 
-type Props = {}
+type Props = {
+  value?: string,
+  setValue?: React.Dispatch<React.SetStateAction<string>>,
+  placeholder?: string,
+  registerForm?: any,
+}
 
 const InputText = (props: Props) => {
+
+  const handleChange = (e: any) => {
+    props.setValue(e.target.value)
+  }
+
   return (
     <TextField
-        placeholder='Digite sua chave de acesso aqui...'
+        placeholder={props.placeholder}
+        {...props.registerForm}
     ></TextField>
   )
 }

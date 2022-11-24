@@ -17,7 +17,9 @@ const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 600,
-    width: 800,
+    width: 1000,
+    minHeight: 600,
+    minWidth: 1000,
     autoHideMenuBar: true,
     icon: './src/assets/icon.png',
     frame: false,

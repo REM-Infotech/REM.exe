@@ -2,10 +2,10 @@
 
 body {
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
+    Arial, sans-serif !important;
   margin: 0;
-  background-color: #511d6d;
-  color: white;
+  background-color: #511d6d!important;
+  color: white!important;
   min-height: 100vh;
   overflow: hidden;
 }

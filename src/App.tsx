@@ -3,20 +3,30 @@ import { MemoryRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import UserRouter from './routes/UserRoutes';
-import { colors } from './service/theme';
+import NoAuthRoutes from './routes/NoAuthRoutes';
+import theme, { colors } from './service/theme';
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
+import useAuthStore from './context/authStore';
+import UserRoutes from './routes/UserRoutes';
 
 type Props = {}
 
 const App = (props: Props) => {
+  const { user } = useAuthStore(state => ({ user: state.user }))
+
   return (
     <Container>
-      <Navbar>
-        <MemoryRouter initialEntries={['/']}>
-          <UserRouter />
-        </MemoryRouter>
-      </Navbar>
-      <Footer />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Navbar>
+          <MemoryRouter initialEntries={['/']}>
+            {!user && <NoAuthRoutes />}
+            {user && <UserRoutes />}
+          </MemoryRouter>
+        </Navbar>
+        <Footer />
+      </ThemeProvider>
     </Container>
   )
 }

@@ -1,18 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { colors } from '../../service/theme';
 import styled from 'styled-components';
 import logo from '../../assets/logo.png';
 import InputText from './components/InputText';
+import { loginSchema } from '../../service/yupSchemas';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import ErrorMessage from '../../components/ErrorMessage';
+import useLogin from '../../hooks/useLogin';
+import Button from './components/Button';
 
 type Props = {}
 
 const Login = (props: Props) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const loginAction = useLogin()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+  const onSubmit = async(
+    dataForm: any, 
+    e: any
+  ) => {
+    setErrorMessage(null)
+    setIsLoading(true)
+    const data = await loginAction(dataForm.token)
+    setIsLoading(false)
+
+    if(data.error) {
+      setErrorMessage(data.error)
+      return
+    }
+    console.log(data)
+  }
+
   return (
     <Container>
       <Logo src={logo} />
-      <Content>
-        <InputText />
-        <Button>Entrar</Button>
+      <Content onSubmit={handleSubmit(onSubmit)}>
+        <ErrorMessage message={errors.token?.message.toString()} />
+        <ErrorMessage message={errorMessage} />
+        <InputText
+          placeholder={'Digite sua chave de acesso aqui...'}
+          registerForm={register('token')}
+        />
+        <Button
+          title='Entrar'
+          isLoading={isLoading}
+        />
       </Content>
     </Container>
   )
@@ -32,29 +73,14 @@ const Container = styled.div`
 const Logo = styled.img`
   width: 40rem;
 `
-const Content = styled.div`
+const Content = styled.form`
   flex: 1;
   width: 100%;
+  max-width: 60rem;
   display: flex;
   row-gap: 1rem;
   align-content: center;
   justify-content: center;
   flex-direction: column;
   -webkit-app-region: no-drag;
-`
-const Button = styled.button`
-  height: 60px;
-  border-radius: .5rem;
-  background-color: ${colors.primary};
-  color: white;
-  outline: none;
-  border: 1px solid ${colors.primary};
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: .3s;
-
-  &:hover {
-    background-color: ${colors.secondary};
-    color: ${colors.primary};
-  }
 `
