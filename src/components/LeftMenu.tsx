@@ -56,7 +56,7 @@ const LeftMenu = (props: Props) => {
             <Logo />
             <ListMenu active={props.active} />
         </Menu>
-        <Content>
+        <Content className='scroll_enabled'>
             {props.children}
         </Content>
     </Container>
@@ -74,17 +74,18 @@ const Container = styled.div`
     column-gap: 1rem;
     padding: 1rem;
     padding-top: 0;
+    -webkit-app-region: no-drag;
 `
 const Menu = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    width: 15rem;
+    width: 25rem;
     row-gap: 2rem;
 `
 const Content = styled.div`
-    -webkit-app-region: no-drag;
+    overflow-y: auto;
 `
 const ListMenuElement = styled.div`
     width: 100%;
