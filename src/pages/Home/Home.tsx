@@ -12,6 +12,8 @@ const bots: Bot[] = [
     id: 1,
     title: 'Anexar Nota Técnica',
     description: 'Robô para anexar notas técnicas em lote no e-Law.',
+    type: 'not',
+    plataform: 'elaw',
     chips: [
       {
         label: 'e-Law',
@@ -23,6 +25,8 @@ const bots: Bot[] = [
     id: 2,
     title: 'Encerramento de processos',
     description: 'Robô para encerrar processos em lote no e-Law.',
+    type: 'enc',
+    plataform: 'elaw',
     chips: [
       {
         label: 'e-Law',
@@ -34,6 +38,8 @@ const bots: Bot[] = [
     id: 3,
     title: 'Movimentação',
     description: 'Robô para obter as movimentações de processos no e-SAJ',
+    type: 'mov',
+    plataform: 'esaj',
     chips: [
       {
         label: 'e-SAJ',
@@ -49,6 +55,8 @@ const bots: Bot[] = [
     id: 4,
     title: 'Movimentação',
     description: 'Robô para obter as movimentações de processos no Projudi',
+    type: 'mov',
+    plataform: 'projudi',
     chips: [
       {
         label: 'Projudi',
@@ -61,9 +69,11 @@ const bots: Bot[] = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: 'Peticionar',
     description: 'Robô para obter realizar peticionamento em massas de processos no Projudi.',
+    type: 'pet',
+    plataform: 'projudi',
     chips: [
       {
         label: 'Projudi',
@@ -85,9 +95,7 @@ const Home = (props: Props) => {
           {bots.map(bot => 
             <GridItem
               key={bot.id}
-              title={bot.title}
-              description={bot.description}
-              chips={bot.chips}
+              bot={bot}
             />
           )}
         </Grid>

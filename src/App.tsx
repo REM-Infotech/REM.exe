@@ -18,14 +18,16 @@ const App = (props: Props) => {
   return (
     <Container>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Navbar>
-          <MemoryRouter initialEntries={['/']}>
-            {!user && <NoAuthRoutes />}
-            {user && <UserRoutes />}
-          </MemoryRouter>
-        </Navbar>
-        <Footer />
+        <MemoryRouter initialEntries={['/']}>
+          <CssBaseline />
+          <Navbar>
+            <>
+              {!user && <NoAuthRoutes />}
+              {user && <UserRoutes />}
+            </>
+          </Navbar>
+          <Footer />
+        </MemoryRouter>
       </ThemeProvider>
     </Container>
   )
