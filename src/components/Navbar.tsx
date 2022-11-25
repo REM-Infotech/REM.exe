@@ -84,7 +84,7 @@ const Navbar = (props: Props) => {
 export default Navbar;
 
 const Container = styled.div`
-   height: 90%;
+   height: 90.4%;
 `
 const Content = styled.div`
    height: 100%;

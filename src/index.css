@@ -28,16 +28,17 @@ html {
   background: rgba(0,0,0,0);
 }
 .scroll_enabled::-webkit-scrollbar-thumb {
-  background-color: #862a7c;/*#862a7ba0;*/
+  background-color: rgba(255,255,255,0.2);/*#862a7ba0;*/
   border-radius: 6px;
   border: 4px solid rgba(0,0,0,0);
   background-clip: content-box;
   min-width: 32px;
   min-height: 32px;
   cursor: pointer;
+  transition: .3s;
 }
 .scroll_enabled::-webkit-scrollbar-thumb:hover {
-  background-color: #862a7c;
+  background-color: rgba(255,255,255,0.5);
   cursor: pointer;
 }
 .scroll_enabled::-webkit-scrollbar-track {

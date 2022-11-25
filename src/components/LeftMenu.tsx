@@ -74,6 +74,7 @@ const Container = styled.div`
     column-gap: 1rem;
     padding: 1rem;
     padding-top: 0;
+    padding-right: 0;
     -webkit-app-region: no-drag;
 `
 const Menu = styled.div`
@@ -101,15 +102,16 @@ const ListMenuElement = styled.div`
 const LisItemElement = styled.div((props) => css`
     padding: 0.5rem 0 0.5rem 0;
     border-radius: 0.25rem;
-    background-color: ${props.isActive? colors.primary : 'transparent'};
+    background-color: ${props.isActive? colors.secondary : 'transparent'};
     cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     column-gap: 0.5rem;
+    color: ${props.isActive? colors.primary : colors.secondary};
 
     &:hover {
-        background-color: ${props.isActive? colors.primary : 'rgba(255,255,255,0.1)'};
+        background-color: ${props.isActive? colors.secondary : 'rgba(255,255,255,0.1)'};
     }
 `) 
