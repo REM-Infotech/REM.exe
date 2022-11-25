@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import OpenInFullIcon from '@mui/icons-material/OpenInFull';
 import MinimizeIcon from '@mui/icons-material/Minimize';
 import CloseFullscreenIcon from '@mui/icons-material/CloseFullscreen';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { colors } from '../service/theme';
 import { 
     closeWindow, 
@@ -11,6 +12,8 @@ import {
     maximizeWindow, 
     isMaximized
 } from '../service/electron-remote';
+import useIsMaximized from '../hooks/useIsMaximized';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
     children: JSX.Element
@@ -36,11 +39,23 @@ const IconButton = (props: IconProps) => {
 }
 
 const Navbar = (props: Props) => {
-    const [maximized, setMaximized] = useState<boolean>(false);
+    const maximized = useIsMaximized()
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const goBack = () => {
+        navigate(-1)
+    }
+
   return (
     <Container>
         <Nav>
-            <p></p>
+            <ButtonBack>
+                {location.pathname != '/' &&
+                <Button onClick={goBack}>
+                    <ArrowBackIcon />
+                </Button>}
+            </ButtonBack>
             <ButtonsContainer>
                 <IconButton
                     type='minimize'
@@ -49,7 +64,6 @@ const Navbar = (props: Props) => {
                 <IconButton
                     type='maximize'
                     onClick={() => {
-                        setMaximized(maximized? false : true);
                         maximizeWindow();
                     }}
                     isMaximized={maximized}
@@ -112,3 +126,12 @@ const Button = styled.button((props) => css`
 `)
 
 const ButtonsContainer = styled.div``
+const ButtonBack = styled.div`
+    & button {
+        padding: .25rem .5rem .25rem .5rem;
+        border-radius: 0 0 .25rem 0;
+    }
+    & button svg {
+        width: 1.75rem;
+    }
+`
