@@ -48,7 +48,7 @@ const Navbar = (props: Props) => {
     }
 
   return (
-    <Container>
+    <Container location={location.pathname}>
         <Nav>
             <ButtonBack>
                 {location.pathname != '/' &&
@@ -84,7 +84,9 @@ const Navbar = (props: Props) => {
 export default Navbar;
 
 const Container = styled.div`
-   height: 90.4%;
+    height: ${props => props.location == '/' ? '90.4%' : '100%'};
+    padding-bottom: ${props => props.location == '/' ? '0' : '1rem'};
+   /* height: 90.4%; */
 `
 const Content = styled.div`
    height: 100%;

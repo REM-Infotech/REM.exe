@@ -7,10 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { ProcessRow } from '../service/readXLSX';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.dark,
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -60,14 +61,18 @@ const rows = [
   createData('0600412-10.2022.8.04.6001', 'Aguardando...'),
 ];
 
-const ProcessTable = () => {
+interface Props {
+  rows: ProcessRow[] 
+}
+
+const ProcessTable = (props: Props) => {
   return (
     <TableContainer component={Paper}
       sx={{
         backgroundColor: 'transparent',
       }}
     >
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table sx={{ minWidth: 500 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Processo</StyledTableCell>
@@ -75,14 +80,23 @@ const ProcessTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {props.rows.length ? props.rows.map((row) => (
             <StyledTableRow key={row.npu}>
               <StyledTableCell component="th" scope="row">
                 {row.npu}
               </StyledTableCell>
               <StyledTableCell align="left">{row.status}</StyledTableCell>
             </StyledTableRow>
-          ))}
+          )) :
+          <StyledTableRow>
+              <StyledTableCell component="th" scope="row">
+                Nenhum processo adicionado
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                
+              </StyledTableCell>
+          </StyledTableRow>
+          }
         </TableBody>
       </Table>
     </TableContainer>
