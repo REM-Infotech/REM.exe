@@ -51,6 +51,7 @@
     "@types/styled-components": "^5.1.26",
     "axios": "^1.2.0",
     "electron-squirrel-startup": "^1.0.0",
+    "react-drag-drop-files": "^2.3.8",
     "react-hook-form": "^7.39.5",
     "react-router-dom": "^6.4.3",
     "styled-components": "^5.3.6",

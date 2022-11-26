@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import XLSXupload from '../../../../components/XLSXupload';
 import styled from 'styled-components';
 import ProcessTable from '../../../../components/ProcessTable';
 
 type Props = {}
 
 const ProcessTab = (props: Props) => {
+  const [file, setFile] = useState<File | null>(null);
+
+  useEffect(() => {
+    console.log(file)
+  }, [file])
+  
+
   return (
     <Container>
-        <LeftContainer>Fuck u, aye mate</LeftContainer>
+        <LeftContainer>
+          <XLSXupload
+            file={file}
+            setFile={setFile}
+          />
+        </LeftContainer>
         <TableContainer>
             <ProcessTable />
         </TableContainer>
