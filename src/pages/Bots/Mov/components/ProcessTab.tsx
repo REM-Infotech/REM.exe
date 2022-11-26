@@ -1,16 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import XLSXupload from '../../../../components/XLSXupload';
 import styled from 'styled-components';
 import ProcessTable from '../../../../components/ProcessTable';
 import { Button } from '@mui/material';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { ProcessRow, readXLSX } from '../../../../service/readXLSX';
+import { ErrorLog } from '../../../../types/process';
+import CredentialsForm from '../../../../components/CredentialsForm';
+import { BotSettingsContext } from '../../../../context/botSettings';
+import { BotSettingsContextType } from '../../../../types/botSettings';
 
 type Props = {}
 
 const ProcessTab = (props: Props) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [rows, setRows] = useState<ProcessRow[]>([])
+  const { 
+    credentials, 
+    setCredentials,
+    file,
+    setFile,
+    rows,
+    setRows,
+    errorsLog,
+    setErrorsLog 
+  } = useContext(BotSettingsContext) as BotSettingsContextType;
 
   const fetchData = async(file: File) => {
     const data = await readXLSX(file)
@@ -41,6 +53,10 @@ const ProcessTab = (props: Props) => {
             file={file}
             setFile={setFile}
           />
+          <CredentialsForm
+            credentials={credentials}
+            setCredentials={setCredentials}
+          />
           <ButtonContainer>
             <Button 
               variant='contained'
@@ -68,6 +84,9 @@ const TableContainer = styled.div`
 `
 const LeftContainer = styled.div`
   width: 17rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 `
 const ButtonContainer = styled.div`
   position: fixed;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import BotSettingsProvider from '../../../context/botSettings';
 import styled from 'styled-components';
 import ProcessTab from './components/ProcessTab';
 import Tabs from './components/Tabs';
@@ -8,7 +9,7 @@ type Props = {}
 const Tab2 = () => {
   return (
     <Container>
-      <div>Fuck u, aye mate</div>
+      <div>Em breve...</div>
       <div></div>
     </Container>
   )
@@ -16,21 +17,22 @@ const Tab2 = () => {
 const Tab3 = () => {
   return (
     <Container>
-      <div>Fuck u, aye mate</div>
+      <div>Em breve...</div>
       <div></div>
     </Container>
   )
 }
 const MovBot = (props: Props) => {
-  
 
   return (
     <Container>
-      <Tabs
-        tab1={<ProcessTab />}
-        tab2={<Tab2 />}
-        tab3={<Tab3 />}
-      />
+      <BotSettingsProvider>
+        <Tabs
+          tab1={<ProcessTab />}
+          tab2={<Tab2 />}
+          tab3={<Tab3 />}
+        />
+      </BotSettingsProvider>
     </Container>
   )
 }
