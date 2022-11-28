@@ -1,15 +1,18 @@
 export type Credentials = {
     login: string,
-    password: string
+    password: string,
+    [key: string]: string
 }
 
 export type ProcessRow = {
     npu: string;
     status: string
 }
+type TErrorCell = {
+    label: string,
+}
 export type ErrorLog = {
-    npu?: string | null,
-    message: string | null
+    cells: TErrorCell[]
 }
 export interface BotSettingsContextType {
     credentials: Credentials | null;

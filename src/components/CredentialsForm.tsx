@@ -4,65 +4,42 @@ import styled from 'styled-components';
 import { Credentials } from '../types/botSettings';
 import { 
   TextField, 
-  Input, 
-  InputAdornment, 
-  IconButton,
-  FormControl,
-  InputLabel
 } from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { BotSettingsContext } from '../context/botSettings';
+import InputPassword from './InputPassword';
 
 type Props = {
-  credentials: Credentials | null,
-  setCredentials: React.Dispatch<React.SetStateAction<Credentials>>
 }
 
 const CredentialsForm = (props: Props) => {
   const { credentials, setCredentials } = useContext(BotSettingsContext)
-  // TODO: remove props for credentials
+  const [showPassword, setShowPassword] =  useState<boolean>(false)
 
-  const [data, setData] =  useState<any>({
-    login: null,
-    password: null,
-    showPassword: false
-  })
-
-  const handleClickShowPassword = () => {
-    setData({
-      ...data,
-      showPassword: !data.showPassword,
-    });
-  };
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    let newCredentials: Credentials = {...credentials}
+    newCredentials[e.target.name] = e.target.value;
+    
+    setCredentials(newCredentials)
+  }
 
   return (
     <Container>
         <Title>Credenciais</Title>
         <Form>
-          <TextField label="Login" variant="standard" />
-          <FormControl variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">Senha</InputLabel>
-            <Input  
-              type={data.showPassword ? 'text' : 'password'}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {data.showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-        
+          <TextField 
+            label="Login" 
+            variant="standard"
+            value={credentials.login}
+            onChange={onChange}
+            name='login'
+          />
+          <InputPassword
+            label='Senha'
+            value={credentials.password}
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
+            onChange={onChange}
+          />
         </Form>
     </Container>
   )

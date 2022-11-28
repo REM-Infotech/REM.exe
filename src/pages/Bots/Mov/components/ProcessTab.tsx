@@ -53,10 +53,7 @@ const ProcessTab = (props: Props) => {
             file={file}
             setFile={setFile}
           />
-          <CredentialsForm
-            credentials={credentials}
-            setCredentials={setCredentials}
-          />
+          <CredentialsForm />
           <ButtonContainer>
             <Button 
               variant='contained'

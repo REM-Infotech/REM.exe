@@ -14,8 +14,8 @@ interface BotSettingsProviderProps {
  
 const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) => {
     const [credentials, setCredentials] = useState<Credentials | null>({ 
-        login: 'email', 
-        password: 'senha' 
+        login: '', 
+        password: '' 
     })
     const [file, setFile] = useState<File | null>(null);
     const [rows, setRows] = useState<ProcessRow[]>([]);
