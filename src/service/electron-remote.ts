@@ -15,7 +15,6 @@ const minimizeWindow: Function = () => {
 const maximizeWindow: Function = () => {
     const window = remote.getCurrentWindow();
     if(window.isMaximized()) {
-        console.log(window)
         window.unmaximize()
         return 
     }

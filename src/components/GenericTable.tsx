@@ -7,7 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { ProcessRow } from '../service/readXLSX';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,10 +36,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 interface Props {
-  rows: ProcessRow[] 
+    heads: any[];
+    rows: any[];
+    emptyMessage: string;
 }
 
-const ProcessTable = (props: Props) => {
+const GenericTable = (props: Props) => {
   return (
     <TableContainer component={Paper}
       sx={{
@@ -50,26 +51,35 @@ const ProcessTable = (props: Props) => {
       <Table sx={{ minWidth: 500 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Processo</StyledTableCell>
-            <StyledTableCell align="left">Status</StyledTableCell>
+            {props.heads.map((row, index) => 
+                <StyledTableCell key={index}>
+                    {row.label}
+                </StyledTableCell>
+            )}
+
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.rows.length ? props.rows.map((row) => (
-            <StyledTableRow key={row.npu}>
-              <StyledTableCell component="th" scope="row">
-                {row.npu}
-              </StyledTableCell>
-              <StyledTableCell align="left">{row.status}</StyledTableCell>
+          {props.rows.length ? props.rows.map((row, index) => (
+            <StyledTableRow key={index}>
+                {row.cells.map((cell: any) => 
+                    <StyledTableCell key={cell.label}>
+                        {cell.label}
+                    </StyledTableCell>    
+                )}
             </StyledTableRow>
           )) :
           <StyledTableRow>
-              <StyledTableCell component="th" scope="row">
-                Nenhum processo adicionado
+              <StyledTableCell>
+                {props.emptyMessage}
               </StyledTableCell>
-              <StyledTableCell align="left">
-                
-              </StyledTableCell>
+                {props.heads.map((_, index) => {
+                    if(index == 0) return
+                    
+                    return (
+                        <StyledTableCell key={index} />
+                    )
+                })}
           </StyledTableRow>
           }
         </TableBody>
@@ -78,4 +88,4 @@ const ProcessTable = (props: Props) => {
   );
 }
 
-export default ProcessTable;
+export default GenericTable;
