@@ -90,6 +90,7 @@ const Container = styled.div`
 `
 const Content = styled.div`
    height: 100%;
+   -webkit-app-region: no-drag;
 `
 const Nav = styled.div`flex: 1;
     display: flex;

@@ -14,7 +14,7 @@ const GridItem = (props: Props) => {
 
     const handleClick = () => {
         console.log(props.bot.type)
-        navigate(links.bots.mov.replace('{botID}',props.bot.id.toString()))
+        navigate(links.bots[props.bot.type].replace('{botID}',props.bot.id.toString()))
     }
   return (
     <Card 
