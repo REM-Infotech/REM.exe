@@ -64,7 +64,7 @@ export const bots: Bot[] = [
     {
       id: 5,
       title: 'Peticionar',
-      description: 'Robô para obter realizar peticionamento em massas de processos no Projudi.',
+      description: 'Robô para realizar peticionamento em massas de processos no Projudi.',
       type: 'pet',
       plataform: 'projudi',
       chips: [
@@ -75,6 +75,40 @@ export const bots: Bot[] = [
         {
           label: 'Peticionamento',
           link: 'pet'
+        },
+      ]
+    },
+    {
+      id: 6,
+      title: 'Buscar informações processuais',
+      description: 'Robô para obter informações de processos em lote.',
+      type: 'inf',
+      plataform: 'projudi',
+      chips: [
+        {
+          label: 'Projudi',
+          link: 'projudi'
+        },
+        {
+          label: 'Informações',
+          link: 'inf'
+        },
+      ]
+    },
+    {
+      id: 7,
+      title: 'Buscar processos de uma parte',
+      description: 'Robô para obter todos os processos de uma determinada parte.',
+      type: 'par',
+      plataform: 'projudi',
+      chips: [
+        {
+          label: 'Projudi',
+          link: 'projudi'
+        },
+        {
+          label: 'Processos de uma parte',
+          link: 'par'
         },
       ]
     },

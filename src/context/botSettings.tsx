@@ -3,7 +3,8 @@ import {
     BotSettingsContextType, 
     Credentials, 
     ErrorLog, 
-    ProcessRow 
+    ProcessRow, 
+    TCourtData
 } from '../types/botSettings';
 
 export const BotSettingsContext = createContext<BotSettingsContextType | null>(null);
@@ -19,6 +20,9 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
     })
     const [file, setFile] = useState<File | null>(null);
     const [folder, setFolder] = useState<FileList | null>(null);
+    const [parteName, setParteName] = useState<string | null>(null);
+    const [courtData, setCourtData] = useState<TCourtData | null>(null)
+    const [typeEncerramento, setTypeEncerramento] = useState<string | null>(null);
     const [rows, setRows] = useState<ProcessRow[]>([]);
     const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([])
 
@@ -31,6 +35,12 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
                 setFile,
                 folder,
                 setFolder,
+                parteName,
+                setParteName,
+                courtData,
+                setCourtData,
+                typeEncerramento,
+                setTypeEncerramento,
                 rows,
                 setRows,
                 errorsLog,
