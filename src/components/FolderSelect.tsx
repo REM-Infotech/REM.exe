@@ -1,27 +1,31 @@
 import React, { useRef, useEffect } from 'react'
 import styled from 'styled-components';
-import UploadFileIcon from '@mui/icons-material/UploadFile';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 
 type Props = {
-    folder: string | null;
-    setFolder: React.Dispatch<React.SetStateAction<string | null>>;
+    folder: FileList | null;
+    setFolder: React.Dispatch<React.SetStateAction<FileList | null>>;
 }
 
 type DropZoneProps = {
-    folder: string | null;
+    folder: FileList | null;
 }
 
 const DropZone = (props: DropZoneProps) => {
     return (
         <>
             <DropIcon>
-                <UploadFileIcon />
+                <FolderOpenIcon />
             </DropIcon>
             <DropLegend>
                 {!props.folder && <p className="file-legend">
-                    Clique para <span>selecionar</span> ou <span>arraste</span> a planilha até aqui
+                    Clique para <span>selecionar</span> a <span>pasta</span> contendo os arquivos a serem anexados
                 </p>}
-                {props.folder && <p className="file-name">{props.folder}</p>}
+                {props.folder && 
+                    <p className="file-name">
+                        <span>{props.folder.length} arquivos</span> selecionados
+                    </p>
+                }
             </DropLegend>
         </>
     )
@@ -38,8 +42,8 @@ const FolderSelect = (props: Props) => {
     }, [ref])
 
     const onChange = (e: any) => {
-        const path = e.target.files[0]
-        console.log(path)
+        const files = e.target.files
+        props.setFolder(files);
     }
     
 
@@ -74,6 +78,10 @@ const Container = styled.div`
     cursor: pointer;
     font-size: 14px;
     transition: .3s;
+
+    & div {
+        cursor: pointer;
+    }
 
     & svg {
         width: 3rem;
