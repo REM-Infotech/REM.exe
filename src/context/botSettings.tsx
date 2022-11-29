@@ -18,6 +18,7 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
         password: '' 
     })
     const [file, setFile] = useState<File | null>(null);
+    const [folder, setFolder] = useState<FileList | null>(null);
     const [rows, setRows] = useState<ProcessRow[]>([]);
     const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([])
 
@@ -28,6 +29,8 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
                 setCredentials,
                 file,
                 setFile,
+                folder,
+                setFolder,
                 rows,
                 setRows,
                 errorsLog,

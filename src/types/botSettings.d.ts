@@ -19,6 +19,8 @@ export interface BotSettingsContextType {
     setCredentials: React.Dispatch<React.SetStateAction<Credentials>>;
     file: File | null;
     setFile: React.Dispatch<React.SetStateAction<File>>;
+    folder: FileList | null;
+    setFolder: React.Dispatch<React.SetStateAction<FileList | null>>;
     rows: ProcessRow[];
     setRows: React.Dispatch<React.SetStateAction<ProcessRow[]>>;
     errorsLog: ErrorLog[];

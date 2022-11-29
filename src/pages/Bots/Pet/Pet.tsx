@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import BotSettingsProvider from '../../../context/botSettings';
 import styled from 'styled-components';
-import ProcessTab from './components/ProcessTab';
 import Tabs from '../components/Tabs';
 import ErrorTab from '../components/ErrorTab';
+import ProcessTab from './components/ProcessTab';
 
 type Props = {}
 
@@ -15,7 +15,7 @@ const Tab2 = () => {
     </Container>
   )
 }
-const MovBot = (props: Props) => {
+const PetBot = (props: Props) => {
 
   return (
     <Container>
@@ -30,7 +30,7 @@ const MovBot = (props: Props) => {
   )
 }
 
-export default MovBot;
+export default PetBot;
 
 const Container = styled.div`
   -webkit-app-region: no-drag;

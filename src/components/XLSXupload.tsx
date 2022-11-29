@@ -20,7 +20,7 @@ const DropZone = (props: DropZoneProps) => {
             </DropIcon>
             <DropLegend>
                 {!props.file && <p className="file-legend">
-                    Clique para <span>selecionar</span> ou <span>arraste</span> a planilha até aqui
+                    Clique para <span>selecionar</span> ou <span>arraste</span> a planilha de <span>processos</span> até aqui
                 </p>}
                 {props.file && <p className="file-name">{props.file?.name}</p>}
             </DropLegend>
