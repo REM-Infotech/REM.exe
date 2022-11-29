@@ -14,6 +14,10 @@ type TErrorCell = {
 export type ErrorLog = {
     cells: TErrorCell[]
 }
+export type TCourtData = {
+    name: string,
+    id: number | string
+}
 export interface BotSettingsContextType {
     credentials: Credentials | null;
     setCredentials: React.Dispatch<React.SetStateAction<Credentials>>;
@@ -21,6 +25,10 @@ export interface BotSettingsContextType {
     setFile: React.Dispatch<React.SetStateAction<File>>;
     folder: FileList | null;
     setFolder: React.Dispatch<React.SetStateAction<FileList | null>>;
+    parteName: string | null;
+    setParteName: React.Dispatch<React.SetStateAction<string | null>>;
+    courtData: TCourtData | null;
+    setCourtData: React.Dispatch<React.SetStateAction<TCourtData | null>>;
     rows: ProcessRow[];
     setRows: React.Dispatch<React.SetStateAction<ProcessRow[]>>;
     errorsLog: ErrorLog[];
