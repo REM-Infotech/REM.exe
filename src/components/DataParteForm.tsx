@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import { BotSettingsContext } from '../context/botSettings';
 import SelectCourt from './SelectCourt';
+import { courtsList } from '../constants/courts';
 
 type Props = {}
 
@@ -34,6 +35,7 @@ const DataParteForm = (props: Props) => {
             name='name'
           />
           <SelectCourt
+            courtsList={courtsList}
             courtData={courtData}
             setCourtData={setCourtData}
           />

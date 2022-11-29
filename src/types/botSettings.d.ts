@@ -29,6 +29,8 @@ export interface BotSettingsContextType {
     setParteName: React.Dispatch<React.SetStateAction<string | null>>;
     courtData: TCourtData | null;
     setCourtData: React.Dispatch<React.SetStateAction<TCourtData | null>>;
+    typeEncerramento: string | null;
+    setTypeEncerramento: eact.Dispatch<React.SetStateAction<string | null>>;
     rows: ProcessRow[];
     setRows: React.Dispatch<React.SetStateAction<ProcessRow[]>>;
     errorsLog: ErrorLog[];

@@ -4,6 +4,7 @@ export const links: any = {
         mov: '/bot/mov/{botID}',
         pet: '/bot/pet/{botID}',
         inf: '/bot/inf/{botID}',
-        par: '/bot/par/{botID}'
+        par: '/bot/par/{botID}',
+        enc: '/bot/enc/{botID}'
     }
 }

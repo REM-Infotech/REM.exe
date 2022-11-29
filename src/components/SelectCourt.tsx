@@ -4,13 +4,14 @@ import { TCourtData } from '../types/botSettings'
 
 type Props = {
     courtData: TCourtData,
-    setCourtData: React.Dispatch<React.SetStateAction<TCourtData>>
+    setCourtData: React.Dispatch<React.SetStateAction<TCourtData>>,
+    courtsList: string[]
 }
 
 const SelectCourt = (props: Props) => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const [name, id] = e.target.value.split('|') 
+        const [name, id] = e.target.value.split(' || ') 
         const courtData: TCourtData = {
             name: name,
             id: id
@@ -46,12 +47,17 @@ const SelectCourt = (props: Props) => {
                 id: 'court-data',
             }}
             onChange={onChange}
-            defaultValue={0}
+            defaultValue={props.courtData? `${props.courtData.name} || ${props.courtData.id}` : 0}
         >
             <option value={0} disabled>Escolha uma vara...</option>
-            <option value={'Vara de HP|6'}>Ten</option>
-            <option value={'Vara de Konoha|1'}>Twenty</option>
-            <option value={'Vara de Michigan|2'}>Thirty</option>
+            {props.courtsList.map(court => 
+                <option 
+                    value={court}
+                    key={court.split(' || ')[1]}
+                >
+                    {court.split(' || ')[0]}
+                </option>
+            )}
         </NativeSelect>
         <FormHelperText>{errorMessage}</FormHelperText>
     </FormControl>

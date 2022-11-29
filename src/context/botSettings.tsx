@@ -22,6 +22,7 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
     const [folder, setFolder] = useState<FileList | null>(null);
     const [parteName, setParteName] = useState<string | null>(null);
     const [courtData, setCourtData] = useState<TCourtData | null>(null)
+    const [typeEncerramento, setTypeEncerramento] = useState<string | null>(null);
     const [rows, setRows] = useState<ProcessRow[]>([]);
     const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([])
 
@@ -38,6 +39,8 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
                 setParteName,
                 courtData,
                 setCourtData,
+                typeEncerramento,
+                setTypeEncerramento,
                 rows,
                 setRows,
                 errorsLog,
