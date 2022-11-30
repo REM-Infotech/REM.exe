@@ -63,8 +63,8 @@ const GenericTable = (props: Props) => {
           {props.rows.length ? props.rows.map((row, index) => (
             <StyledTableRow key={index}>
                 {row.cells.map((cell: any) => 
-                    <StyledTableCell key={cell.label}>
-                        {cell.label}
+                    <StyledTableCell key={cell}>
+                        {cell}
                     </StyledTableCell>    
                 )}
             </StyledTableRow>
