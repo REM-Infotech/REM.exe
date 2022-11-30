@@ -5,7 +5,7 @@ import {
     ErrorLog, 
     ProcessRow, 
     TCourtData
-} from '../../types/botSettings';
+} from './botSettings';
 
 export const BotSettingsContext = createContext<BotSettingsContextType | null>(null);
 
@@ -24,7 +24,29 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
     const [courtData, setCourtData] = useState<TCourtData | null>(null)
     const [typeEncerramento, setTypeEncerramento] = useState<string | null>(null);
     const [rows, setRows] = useState<ProcessRow[]>([]);
-    const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([])
+    const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([
+        {
+            cells: ['Erro', 'Erro data']
+        },
+        {
+            cells: ['Erro', 'Erro data']
+        },
+        {
+            cells: ['Erro', 'Erro data']
+        },
+        {
+            cells: ['Erro', 'Erro data']
+        },
+        {
+            cells: ['Erro', 'Erro data']
+        },
+        {
+            cells: ['Erro', 'Erro data']
+        },
+        {
+            cells: ['Erro', 'Erro data']
+        },
+    ])
 
     return ( 
         <BotSettingsContext.Provider 

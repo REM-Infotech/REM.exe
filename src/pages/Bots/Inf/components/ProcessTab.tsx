@@ -54,14 +54,14 @@ const ProcessTab = (props: Props) => {
             setFile={setFile}
           />
           <CredentialsForm />
-          <ButtonContainer>
+          {/* <ButtonContainer>
             <Button 
               variant='contained'
               startIcon={<PowerSettingsNewIcon />}
             >
               Ligar robô
             </Button>
-          </ButtonContainer>
+          </ButtonContainer> */}
         </LeftContainer>
         <TableContainer>
             <ProcessTable rows={rows} />

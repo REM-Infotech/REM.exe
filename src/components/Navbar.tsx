@@ -51,7 +51,7 @@ const Navbar = (props: Props) => {
     <Container location={location.pathname}>
         <Nav>
             <ButtonBack>
-                {(location.pathname != '/' &&  location.pathname != '/settings') &&
+                {(location.pathname != '/' &&  location.pathname != '/settings' &&  location.pathname != '/logout') &&
                 <Button onClick={goBack}>
                     <ArrowBackIcon />
                 </Button>}

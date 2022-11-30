@@ -69,14 +69,15 @@ const Container = styled.div`
   padding: 1rem;
   flex: 1;
   height: 100%;
+  -webkit-app-region: drag;
 `
 const Logo = styled.img`
-  width: 40rem;
+  width: 30rem;
 `
 const Content = styled.form`
   flex: 1;
   width: 100%;
-  max-width: 60rem;
+  max-width: 40rem;
   display: flex;
   row-gap: 1rem;
   align-content: center;

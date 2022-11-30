@@ -1,4 +1,5 @@
 export const leftMenuActives = {
     bot: 'myBots',
-    settings: 'settings'
+    settings: 'settings',
+    logout: 'logout'
 }

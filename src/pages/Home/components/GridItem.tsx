@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, Chip, Typography } from '@mui/material';
+import { Button, Card, CardActionArea, CardActions, CardContent, Chip, Zoom, Typography } from '@mui/material';
 import React from 'react'
 import { Bot, Chip as ChipType } from '../../../types/Bots';
 import styled from 'styled-components';
@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { links } from '../../../constants/link';
 
 type Props = {
-    bot: Bot
+    bot: Bot,
+    index: number
 }
 
 const GridItem = (props: Props) => {
@@ -17,6 +18,13 @@ const GridItem = (props: Props) => {
         navigate(links.bots[props.bot.type].replace('{botID}',props.bot.id.toString()))
     }
   return (
+    <Zoom
+        in={true}
+        style={{ 
+            transitionDelay: `${100 * props.index}ms`
+        }}
+        timeout={500}
+    >
     <Card 
         sx={{ 
             width: 275, 
@@ -57,12 +65,14 @@ const GridItem = (props: Props) => {
             sx={{
                 width: '100%'
             }}
+            disableElevation
             onClick={handleClick}
         >
             Abrir
         </Button>
       </CardActions>
     </Card>
+    </Zoom>
   )
 }
 
