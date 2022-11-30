@@ -6,3 +6,10 @@ export const loginSchema = yup.object({
         return true
     }),
 }).required();
+
+export const settingsSchema = yup.object({
+    fontSize: yup.number().test('required', 'Escolha um tamanho mínimo de 5', (size) => {
+        if(size <= 5) return false;
+        return true
+    }),
+}).required();

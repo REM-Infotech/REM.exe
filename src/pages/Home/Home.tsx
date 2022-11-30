@@ -11,7 +11,6 @@ type Props = {}
 const Home = (props: Props) => {
   return (
     <LeftMenu active={leftMenuActives.bot}>
-      <Container>
         <Grid>
           {bots.map(bot => 
             <GridItem
@@ -20,7 +19,6 @@ const Home = (props: Props) => {
             />
           )}
         </Grid>
-      </Container>
     </LeftMenu>
   )
 }
@@ -28,7 +26,6 @@ const Home = (props: Props) => {
 export default Home;
 
 const Container = styled.div`
-  padding-top: 1rem;
 `
 const Grid = styled.div`
   display: flex;

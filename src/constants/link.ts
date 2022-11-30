@@ -6,5 +6,6 @@ export const links: any = {
         inf: '/bot/inf/{botID}',
         par: '/bot/par/{botID}',
         enc: '/bot/enc/{botID}'
-    }
+    },
+    settings: '/settings'
 }
