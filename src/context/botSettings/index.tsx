@@ -5,7 +5,7 @@ import {
     ErrorLog, 
     ProcessRow, 
     TCourtData
-} from '../types/botSettings';
+} from '../../types/botSettings';
 
 export const BotSettingsContext = createContext<BotSettingsContextType | null>(null);
 
