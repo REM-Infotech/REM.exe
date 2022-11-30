@@ -27,10 +27,10 @@ const Container = styled.button((props) => css`
   color: white;
   outline: none;
   border: 1px solid ${colors.primary};
-  font-size: 1.25rem;
   cursor: pointer;
   transition: .3s;
   opacity: ${props.disabled? '.5' : '1'};
+  font-size: 1.25rem;
 
   &:hover {
     background-color: ${props.disabled? colors.primary : colors.secondary};

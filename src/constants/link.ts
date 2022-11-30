@@ -7,5 +7,6 @@ export const links: any = {
         par: '/bot/par/{botID}',
         enc: '/bot/enc/{botID}'
     },
-    settings: '/settings'
+    settings: '/settings',
+    logout: '/logout'
 }

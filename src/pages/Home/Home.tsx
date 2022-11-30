@@ -12,8 +12,9 @@ const Home = (props: Props) => {
   return (
     <LeftMenu active={leftMenuActives.bot}>
         <Grid>
-          {bots.map(bot => 
+          {bots.map((bot, index) => 
             <GridItem
+              index={index}
               key={bot.id}
               bot={bot}
             />

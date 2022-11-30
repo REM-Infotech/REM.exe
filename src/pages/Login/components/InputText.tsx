@@ -30,6 +30,6 @@ const TextField = styled.input`
     border-radius: .5rem;
     outline: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 `
 

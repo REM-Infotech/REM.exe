@@ -5,6 +5,7 @@ import Logo from './Logo';
 import { colors } from '../service/theme';
 import SmartToyOutlinedIcon from '@mui/icons-material/SmartToyOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { links } from '../constants/link';
 import { useNavigate } from 'react-router-dom';
 
@@ -53,6 +54,12 @@ const ListMenu = (props: ListMenuProps) => {
                 icon={<SettingsOutlinedIcon />}
                 link={links.settings}
             />
+            <ListItem
+                name='Sair'
+                isActive={props.active == leftMenuActives.logout}
+                icon={<LogoutIcon />}
+                link={links.logout}
+            />
         </ListMenuElement>
     )
 }
@@ -99,6 +106,7 @@ const Content = styled.div`
     width: 80vw;
     padding-right: 1rem;
     padding-top: 1rem;
+    padding-bottom: 1.5rem;
 `
 const ListMenuElement = styled.div`
     width: 100%;
@@ -112,13 +120,13 @@ const ListMenuElement = styled.div`
     row-gap: .25rem;
 `
 const LisItemElement = styled.div((props) => css`
-    padding: 0.5rem 0 0.5rem 0;
+    padding: 0.5rem 0 0.5rem 1rem;
     border-radius: 0.25rem;
     background-color: ${props.isActive? colors.secondary : 'transparent'};
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     column-gap: 0.5rem;
     color: ${props.isActive? colors.primary : colors.secondary};

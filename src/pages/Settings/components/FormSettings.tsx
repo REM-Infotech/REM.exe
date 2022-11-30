@@ -7,10 +7,13 @@ import useSetSettings from '../../../hooks/useSetSettings'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { settingsSchema } from '../../../service/yupSchemas'
+import useAuthStore from '../../../context/authStore';
+import SaveIcon from '@mui/icons-material/Save';
 
 type Props = {}
 
 const FormSettings = (props: Props) => {
+    const { user, token } = useAuthStore(state => ({ user: state.user, token: state.token }))
     const { fontSize } = useGetSettings()
     const setSettings = useSetSettings();
 
@@ -31,6 +34,18 @@ const FormSettings = (props: Props) => {
     >
         <Form onSubmit={handleSubmit(onSubmit)}>
             <TextField
+                label="Nome do usuário"
+                variant="standard"
+                disabled
+                value={user.name}
+            />
+            <TextField
+                label="Token"
+                variant="standard"
+                disabled
+                value={user.token}
+            />
+            <TextField
                 label="Tamanho da fonte"
                 type="number"
                 InputLabelProps={{
@@ -45,6 +60,8 @@ const FormSettings = (props: Props) => {
             <Button 
                 variant="contained"
                 type='submit'
+                disableElevation
+                endIcon={<SaveIcon />}
             >
                 Salvar
             </Button>
@@ -59,4 +76,5 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    align-items: flex-start;
 `

@@ -64,14 +64,14 @@ const ProcessTab = (props: Props) => {
             setData={setTypeEncerramento}
           />
           <CredentialsForm />
-          <ButtonContainer>
+          {/* <ButtonContainer>
             <Button 
               variant='contained'
               startIcon={<PowerSettingsNewIcon />}
             >
               Ligar robô
             </Button>
-          </ButtonContainer>
+          </ButtonContainer> */}
         </LeftContainer>
         <TableContainer>
             <ProcessTable rows={rows} />

@@ -1,7 +1,8 @@
-import { Box, Tab } from '@mui/material';
+import { Box, Button, Tab } from '@mui/material';
 import { default as TabsElement } from '@mui/material/Tabs';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 type Props = {
     tab1?: React.ReactNode;
@@ -56,9 +57,13 @@ const Tabs = (props: Props) => {
         sx={{ 
             borderBottom: 1, 
             borderColor: 'divider',
+            position: 'relative',
             '& .MuiTab-root.MuiTab-textColorPrimary': {
                 color: 'white',
                 opacity: .5
+            },
+            '& .MuiTab-root.MuiTab-textColorPrimary:hover': {
+                opacity: 1
             },
             '& .MuiTab-root.MuiTab-textColorPrimary.Mui-selected': {
                 opacity: 1
@@ -71,13 +76,22 @@ const Tabs = (props: Props) => {
             }
         }}
     >
+            <ButtonContainer>
+                <Button
+                    variant='contained'
+                    disableElevation
+                    endIcon={<PowerSettingsNewIcon />}
+                >
+                    Ligar robô
+                </Button>
+            </ButtonContainer>
         <TabsElement 
             value={value} 
             onChange={handleChange} 
             aria-label="basic tabs example"
-        >
+        >   
             <Tab label="Processos" {...a11yProps(0)} />
-            <Tab label="Configurações" {...a11yProps(1)} />
+            <Tab label="Configurações" {...a11yProps(1)} disabled />
             <Tab label="Erros" {...a11yProps(2)} />
         </TabsElement>
     </Box>
@@ -98,4 +112,10 @@ export default Tabs;
 
 const TabPanelContainer = styled.div`
     max-height: 90%;
+`
+const ButtonContainer = styled.div`
+    position: absolute;
+    right: 1rem;
+    z-index: 9999;
+    top: 5px;
 `
