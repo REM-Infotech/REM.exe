@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from './components/Footer';
@@ -9,13 +9,19 @@ import { ThemeProvider } from '@mui/material/styles';
 import useAuthStore from './context/authStore';
 import UserRoutes from './routes/UserRoutes';
 import useCreateTheme from './hooks/useCreateTheme';
+import useVerifyIfTokenIsExpired from './hooks/useVerifyTokenExpired';
 
 type Props = {}
 
 const App = (props: Props) => {
   const { user } = useAuthStore(state => ({ user: state.user }))
+  const verifyIfTokenIsExpired = useVerifyIfTokenIsExpired();
   const themeOptions = useCreateTheme();
   const themeDefault: Theme = createTheme(themeOptions);
+
+  useEffect(() => {
+    verifyIfTokenIsExpired()
+  },[])
 
   return (
     <Container>

@@ -18,7 +18,8 @@ type ListItemProps = {
     name: string,
     icon?: React.ReactNode,
     isActive?: boolean,
-    link: string
+    link: string,
+    id?: string | null,
 }
 
 type ListMenuProps = {
@@ -32,6 +33,7 @@ const ListItem = (props: ListItemProps) => {
         <LisItemElement
             isActive={props.isActive}
             onClick={() => navigate(props.link)}
+            id={props.id}
         >
             {props.icon}
             <span>{props.name}</span>
@@ -59,6 +61,7 @@ const ListMenu = (props: ListMenuProps) => {
                 isActive={props.active == leftMenuActives.logout}
                 icon={<LogoutIcon />}
                 link={links.logout}
+                id='logout'
             />
         </ListMenuElement>
     )

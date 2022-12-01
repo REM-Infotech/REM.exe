@@ -1,4 +1,4 @@
-export const links: any = {
+export const links: Links = {
     home: '/',
     bots: {
         mov: '/bot/mov/{botID}',
@@ -9,4 +9,17 @@ export const links: any = {
     },
     settings: '/settings',
     logout: '/logout'
+}
+
+interface Links {
+    home: string,
+    bots: {
+        mov: string,
+        pet: string,
+        inf: string,
+        par: string,
+        enc: string
+    },
+    settings: string,
+    logout: string
 }

@@ -7,6 +7,8 @@ const authStore = (set: any) => <AuthState>({
     user: null,
     setToken: (token: string | null) => set((state: AuthState) => ({ token: token })),
     setUser: (user: User | null) => set((state: AuthState) => ({ user: user })),
+    expTokenDate: null,
+    setExpTokenDate: (date: Date) => set({expTokenDate: date}),
     logout: () => set({user: null, token: null})
 })
 
