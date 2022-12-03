@@ -9,7 +9,8 @@ export const loginAction = async(
     let res: Res = {
         data: {
             user: null,
-            token: null
+            token: null,
+            exp: 0
         },
         error: null
     }
