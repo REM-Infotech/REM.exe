@@ -18,3 +18,4 @@ export const getBotImage = (plataform: string) => {
 
     return image
 }
+

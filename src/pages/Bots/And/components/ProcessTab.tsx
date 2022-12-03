@@ -1,13 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import XLSXupload from '../../../../components/XLSXupload';
 import styled from 'styled-components';
-import ProcessTable from '../../../../components/ProcessTable';
-import { readXLSX } from '../../../../service/readXLSX';
-import { ErrorLog } from '../../../../types/process';
+import ProcessTable from '../../../../components/ProcessTable';;
+import {readXLSX } from '../../../../service/readXLSX';
 import CredentialsForm from '../../../../components/CredentialsForm';
 import { BotSettingsContext } from '../../../../context/botSettings';
 import { BotSettingsContextType } from '../../../../context/botSettings/botSettings';
-import SelectType from './SelectType';
 
 type Props = {}
 
@@ -17,14 +15,10 @@ const ProcessTab = (props: Props) => {
     setCredentials,
     file,
     setFile,
-    folder,
-    setFolder,
-    typeEncerramento,
-    setTypeEncerramento,
     rows,
     setRows,
     errorsLog,
-    setErrorsLog 
+    setErrorsLog
   } = useContext(BotSettingsContext) as BotSettingsContextType;
 
   const fetchData = async(file: File) => {
@@ -56,19 +50,7 @@ const ProcessTab = (props: Props) => {
             file={file}
             setFile={setFile}
           />
-          <SelectType
-            data={typeEncerramento}
-            setData={setTypeEncerramento}
-          />
           <CredentialsForm />
-          {/* <ButtonContainer>
-            <Button 
-              variant='contained'
-              startIcon={<PowerSettingsNewIcon />}
-            >
-              Ligar robô
-            </Button>
-          </ButtonContainer> */}
         </LeftContainer>
         <TableContainer>
             <ProcessTable rows={rows} />

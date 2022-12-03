@@ -3,9 +3,9 @@ import { Bot } from '../types/Bots';
 export const bots: Bot[] = [
     {
       id: 1,
-      title: 'Anexar Nota Técnica',
-      description: 'Robô para anexar notas técnicas em lote no e-Law.',
-      type: 'not',
+      title: 'Adicionar andamento',
+      description: 'Robô para adicionar andamentos em lote no e-Law.',
+      type: 'and',
       plataform: 'elaw',
       chips: [
         {

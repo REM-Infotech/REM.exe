@@ -5,7 +5,8 @@ export const links: Links = {
         pet: '/bot/pet/{botID}',
         inf: '/bot/inf/{botID}',
         par: '/bot/par/{botID}',
-        enc: '/bot/enc/{botID}'
+        enc: '/bot/enc/{botID}',
+        and: '/bot/and/{botID}'
     },
     settings: '/settings',
     logout: '/logout'
@@ -18,7 +19,8 @@ interface Links {
         pet: string,
         inf: string,
         par: string,
-        enc: string
+        enc: string,
+        and: string
     },
     settings: string,
     logout: string
