@@ -37,13 +37,19 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
     
     
         pyshell.on('message', function (message) {
-            // received a message sent from the Python script (a simple "print" statement)
-            console.log(message);
+            const [messageData, messageLog] = message.split(']>')
+            const [type, hour] = messageData.replace('<[','').split(',')
+            console.log(messageLog, hour)
+            if(type=='error') {
+                setErrorsLog(errors => [...errors, { cells: [messageLog, hour] }])
+            }
         });
     
         // end the input stream and allow the process to exit
         pyshell.end(function (err,code,signal) {
-            if (err) throw err;
+            if (err) {
+                throw err;
+            }
             console.log('The exit code was: ' + code);
             console.log('The exit signal was: ' + signal);
             console.log('finished');
