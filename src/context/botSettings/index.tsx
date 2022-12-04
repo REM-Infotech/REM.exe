@@ -6,6 +6,7 @@ import {
     ProcessRow, 
     TCourtData
 } from './botSettings';
+import {PythonShell} from 'python-shell';
 
 export const BotSettingsContext = createContext<BotSettingsContextType | null>(null);
 
@@ -24,29 +25,36 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
     const [courtData, setCourtData] = useState<TCourtData | null>(null)
     const [typeEncerramento, setTypeEncerramento] = useState<string | null>(null);
     const [rows, setRows] = useState<ProcessRow[]>([]);
-    const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([
-        {
-            cells: ['Erro', 'Erro data']
-        },
-        {
-            cells: ['Erro', 'Erro data']
-        },
-        {
-            cells: ['Erro', 'Erro data']
-        },
-        {
-            cells: ['Erro', 'Erro data']
-        },
-        {
-            cells: ['Erro', 'Erro data']
-        },
-        {
-            cells: ['Erro', 'Erro data']
-        },
-        {
-            cells: ['Erro', 'Erro data']
-        },
-    ])
+    const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([])
+
+    const execBot = async() => {
+        let options = {
+            pythonOptions: ['-u'], // get print results in real-time
+            scriptPath: 'src/scripts/',
+            args: ['value1', 'value2', 'value3']
+        };
+        let pyshell = new PythonShell('test.py', options);
+    
+    
+        pyshell.on('message', function (message) {
+            const [messageData, messageLog] = message.split(']>')
+            const [type, hour] = messageData.replace('<[','').split(',')
+            console.log(messageLog, hour)
+            if(type=='error') {
+                setErrorsLog(errors => [...errors, { cells: [messageLog, hour] }])
+            }
+        });
+    
+        // end the input stream and allow the process to exit
+        pyshell.end(function (err,code,signal) {
+            if (err) {
+                throw err;
+            }
+            console.log('The exit code was: ' + code);
+            console.log('The exit signal was: ' + signal);
+            console.log('finished');
+        });
+    }
 
     return ( 
         <BotSettingsContext.Provider 
@@ -66,7 +74,8 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
                 rows,
                 setRows,
                 errorsLog,
-                setErrorsLog
+                setErrorsLog,
+                execBot
             }}
         >
             {children}

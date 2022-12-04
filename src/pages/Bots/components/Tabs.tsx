@@ -72,7 +72,10 @@ const ErrorLabel = (props: TErrorsLabelProps) => {
 }
 
 const Tabs = (props: Props) => {
-    const { errorsLog } = useContext(BotSettingsContext) as BotSettingsContextType;
+    const { 
+        errorsLog,
+        execBot
+     } = useContext(BotSettingsContext) as BotSettingsContextType;
     const [value, setValue] = useState<number>(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -109,6 +112,7 @@ const Tabs = (props: Props) => {
                     variant='contained'
                     disableElevation
                     endIcon={<PowerSettingsNewIcon />}
+                    onClick={execBot}
                 >
                     Ligar robô
                 </Button>

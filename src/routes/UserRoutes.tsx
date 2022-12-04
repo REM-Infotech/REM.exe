@@ -8,6 +8,7 @@ import ParBot from "../pages/Bots/Par/Par";
 import EncBot from "../pages/Bots/Enc/Enc";
 import Settings from "../pages/Settings/Settings";
 import Logout from "../pages/Logout/Logout";
+import AndBot from "../pages/Bots/And";
 
 type Props = {}
 
@@ -21,6 +22,7 @@ const UserRoutes = (props: Props) => {
       <Route path='/bot/inf/:botID' element={<InfBot/>} />
       <Route path='/bot/par/:botID' element={<ParBot/>} />
       <Route path='/bot/enc/:botID' element={<EncBot/>} />
+      <Route path='/bot/and/:botID' element={<AndBot/>} />
       <Route path='/logout' element={<Logout />} />
     </Routes>
   )
