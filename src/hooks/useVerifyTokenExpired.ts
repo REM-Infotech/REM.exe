@@ -9,7 +9,7 @@ const useVerifyIfTokenIsExpired = () => {
     
         if(dateNow >= expDate) {
           const logoutButton = document.querySelector('#logout') as any;
-          logoutButton.click();
+          logoutButton?.click();
         }
     }
 

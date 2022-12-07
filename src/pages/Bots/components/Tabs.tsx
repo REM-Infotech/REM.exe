@@ -6,6 +6,8 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { BotSettingsContext } from '../../../context/botSettings';
 import { BotSettingsContextType, ErrorLog } from '../../../context/botSettings/botSettings';
 import { colors } from '../../../service/theme';
+import { downloadBots } from '../../../service/downloadBots';
+import useAuthStore from '../../../context/authStore';
 
 type Props = {
     tab1?: React.ReactNode;
@@ -76,6 +78,7 @@ const Tabs = (props: Props) => {
         errorsLog,
         execBot
      } = useContext(BotSettingsContext) as BotSettingsContextType;
+     const { token } = useAuthStore(state => ({ token: state.token }))
     const [value, setValue] = useState<number>(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -112,7 +115,7 @@ const Tabs = (props: Props) => {
                     variant='contained'
                     disableElevation
                     endIcon={<PowerSettingsNewIcon />}
-                    onClick={execBot}
+                    onClick={() => downloadBots(token)}
                 >
                     Ligar robô
                 </Button>
