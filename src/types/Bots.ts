@@ -4,7 +4,7 @@ export interface Bot {
     description: string,
     type: string,
     plataform?: string,
-    chips: Chip[]
+    link: string
 }
 
 export interface Chip {

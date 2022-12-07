@@ -7,12 +7,7 @@ export const bots: Bot[] = [
       description: 'Robô para adicionar andamentos em lote no e-Law.',
       type: 'and',
       plataform: 'elaw',
-      chips: [
-        {
-          label: 'e-Law',
-          link: 'elaw'
-        }
-      ]
+      link: '/andamento_elaw.py'
     },
     {
       id: 2,
@@ -20,12 +15,7 @@ export const bots: Bot[] = [
       description: 'Robô para encerrar processos em lote no e-Law.',
       type: 'enc',
       plataform: 'elaw',
-      chips: [
-        {
-          label: 'e-Law',
-          link: 'elaw'
-        }
-      ]
+      link: '/encerramento_elaw.py'
     },
     {
       id: 3,

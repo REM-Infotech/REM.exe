@@ -29,3 +29,44 @@ export const loginAction = async(
 
     return res  
 }
+
+export const downloadBotAction = async(
+    token: string | null
+) => {
+    let res: any = {
+        data: null,
+        error: null
+    }
+
+    let headers = {
+        token: token
+    }
+
+    await axios.post(`/bots/download`, null, { headers })
+    .then(response => {
+        res.data = response.data
+    })
+    .catch(e => {
+        res.error = e.response?.data.message? e.response.data.message : e.message
+    })
+
+    return res 
+
+}
+
+export const getAllBotsAction = async() => {
+    let res: any = {
+        data: null,
+        error: null
+    }
+
+    await axios.get(`/bots`)
+    .then(response => {
+        res.data = response.data
+    })
+    .catch(e => {
+        res.error = e.response?.data.message? e.response.data.message : e.message
+    })
+
+    return res 
+}
