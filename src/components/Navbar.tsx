@@ -59,18 +59,18 @@ const Navbar = (props: Props) => {
             <ButtonsContainer>
                 <IconButton
                     type='minimize'
-                    onClick={minimizeWindow}
+                    onClick={() => minimizeWindow()}
                 />
                 <IconButton
                     type='maximize'
                     onClick={() => {
                         maximizeWindow();
                     }}
-                    isMaximized={maximized}
+                    isMaximized={true}
                 />
                 <IconButton
                     type='close'
-                    onClick={closeWindow}
+                    onClick={() => closeWindow()}
                 />
             </ButtonsContainer>
         </Nav>
@@ -83,7 +83,7 @@ const Navbar = (props: Props) => {
 
 export default Navbar;
 
-const Container = styled.div`
+const Container = styled.div<{location: string}>`
     height: ${props => props.location == '/' ? '90.4%' : '100%'};
     padding-bottom: ${props => props.location == '/' ? '0' : '1rem'};
    /* height: 90.4%; */
@@ -104,17 +104,14 @@ const Nav = styled.div`flex: 1;
         padding: .5rem;
     }
 `
-const Button = styled.button((props) => css`
+const Button = styled.button<{typeStyle?: string}>((props) => css`
     background-color: ${props.typeStyle == 'close'? 'red' : 'transparent'};
     border: 1px solid transparent;
     cursor: pointer;
     -webkit-app-region: no-drag;
     transition: .3s;
     padding: 0 1rem 0 1rem;
-    border-radius:
-        ${props.typeStyle == 'close' && '0 0 0 .25rem'}
-        ${props.typeStyle != 'close' && '0 0 .25rem .25rem'}
-    ;
+    border-radius: ${props.typeStyle == 'close' && '0 0 0 .25rem'} ${props.typeStyle != 'close' && '0 0 .25rem .25rem'};
 
     &:hover{
         background-color: white;

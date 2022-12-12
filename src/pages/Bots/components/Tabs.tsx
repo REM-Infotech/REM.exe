@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Tab } from '@mui/material';
+import { Badge, Box, Button, CircularProgress, Tab } from '@mui/material';
 import { default as TabsElement } from '@mui/material/Tabs';
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
@@ -76,8 +76,9 @@ const ErrorLabel = (props: TErrorsLabelProps) => {
 const Tabs = (props: Props) => {
     const { 
         errorsLog,
-        execBot
-     } = useContext(BotSettingsContext) as BotSettingsContextType;
+        execBot,
+        isRunning
+     } = useContext(BotSettingsContext);
      const { token } = useAuthStore(state => ({ token: state.token }))
     const [value, setValue] = useState<number>(0);
 
@@ -114,10 +115,13 @@ const Tabs = (props: Props) => {
                 <Button
                     variant='contained'
                     disableElevation
-                    endIcon={<PowerSettingsNewIcon />}
-                    onClick={() => downloadBots(token)}
+                    endIcon={isRunning? <CircularProgress color='secondary' size={20} /> : <PowerSettingsNewIcon />}
+                    onClick={() => execBot()}
+                    disabled={isRunning}
                 >
-                    Ligar robô
+                    <ButtonText disabled={isRunning}>
+                        {isRunning? 'Robô ligado' : 'Ligar robô'}
+                    </ButtonText>
                 </Button>
             </ButtonContainer>
         <TabsElement 
@@ -153,4 +157,7 @@ const ButtonContainer = styled.div`
     right: 1rem;
     z-index: 9999;
     top: 5px;
+`
+const ButtonText = styled.span<{disabled: boolean}>`
+    color: ${colors.secondary};
 `
