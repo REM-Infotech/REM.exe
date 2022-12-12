@@ -32,5 +32,6 @@ export interface BotSettingsContextType {
     setRows: React.Dispatch<React.SetStateAction<ProcessRow[]>>;
     errorsLog: ErrorLog[];
     setErrorsLog: React.Dispatch<React.SetStateAction<ErrorLog[]>>;
-    execBot: () => void
+    execBot: () => void;
+    isRunning: boolean;
 }

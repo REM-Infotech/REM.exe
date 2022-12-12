@@ -16,6 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
+    width: '50%',
   },
 }));
 
@@ -57,7 +58,7 @@ const ProcessTable = (props: Props) => {
         <TableBody>
           {props.rows.length ? props.rows.map((row, index) => (
             <StyledTableRow key={index}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell component="th" scope="row" sx={{width: '100%'}}>
                 {row.npu}
               </StyledTableCell>
               <StyledTableCell align="left">{row.status}</StyledTableCell>
