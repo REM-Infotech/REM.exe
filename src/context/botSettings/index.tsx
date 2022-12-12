@@ -36,6 +36,7 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
 
         const credentialsFormated = `${credentials.login}>!>${credentials.password}`
         setErrorsLog([])
+        // TODO: Array to save rows log
 
         let options = {
             pythonOptions: ['-u'], // get print results in real-time
@@ -47,17 +48,29 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
     
         pyshell.on('message', function (message) {
             if(message.indexOf(']>')==-1) {
-                console.log(message)
+                // console.log(message)
                 return
             }
             const [messageData, messageLog] = message.split(']>')
             const [type, row, hour] = messageData.replace('<[','').split(',')
 
-            console.log(messageLog, hour)
-
             if(type=='error') {
                 setErrorsLog(errors => [...errors, { cells: [messageLog, hour] }])
+                return
+            } 
+            if(row==0 || row=='0') return 
+
+            let newRows = [...rows]            
+            let currentRow = Number(row) - 1;
+            newRows[currentRow] = {
+                ...newRows[currentRow],
+                status: messageLog
             }
+
+            console.log(newRows[currentRow].npu, messageLog, currentRow)
+
+            setRows([...newRows])
+            
         });
     
         // end the input stream and allow the process to exit

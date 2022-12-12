@@ -15,7 +15,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from printlog import print_log as prt
 import pyautogui
 from selenium.webdriver.support.ui import Select
-import sys
+import sys, subprocess
 import pathlib
 
 class ESAJCrawler:
@@ -38,6 +38,7 @@ class ESAJCrawler:
         self.output_dir_path = pathlib.Path(input_file).parent.resolve()
         self.current_dir = pathlib.Path(__file__).parent.resolve()
         self.output_planilha_copia = None
+        self.loginmethod = 'cpf'
  
         try:
             login_esaj = threading.Thread(target=self.login_esaj, args=(driver, wait))
@@ -48,36 +49,56 @@ class ESAJCrawler:
 
     def login_esaj(self, driver, wait):
         # 0638164-88.2019.8.04.0015
-        # driver.get("https://consultasaj.tjam.jus.br/sajcas/login#aba-certificado")
-        driver.get("https://consultasaj.tjam.jus.br/sajcas/login#aba-cpf")
-        sleep(3)
-        login = self.credentials['login']
-        
-        logincert = wait.until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="certificados"]')))
-        for cert in logincert:
-            loginopt = cert.find_elements(By.TAG_NAME, "option")
-            sleep(5)
-            for option in loginopt:
-                    if login in option.text.lower():
-                        try:
-                            sencert = option.get_attribute("value")
-                            select = Select(driver.find_element(By.CSS_SELECTOR, 'select[id="certificados"]'))
-                            select.select_by_value(sencert)
-                            entrar = driver.find_element(By.XPATH, '//*[@id="submitCertificado"]')
-                            entrar.click()
-                            pyautogui.click(768,573,duration=2)
-                            pyautogui.click(1002,638,duration=2)
-                            self.websigner_confirmed = 1
-                            prt(type='log', message='Login efetuado com sucesso', row=1)
-                            sleep(2)
-                        except Exception as e:
-                            print(e)
 
-                        try:
-                            self.get_input_process(driver, wait=wait)
-                        except:
-                            print(colored('Erro ao recuperar processos do input', 'red'))
-                            prt(type='error', message='Erro ao recuperar processos do input', row=1)
+        if self.loginmethod == "certificado" or self.loginmethod == "Certificado":
+            
+            driver.get("https://consultasaj.tjam.jus.br/sajcas/login#aba-certificado")
+            logincert = wait.until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="certificados"]')))
+            sleep(3)
+
+            for cert in logincert:
+                loginopt = cert.find_elements(By.TAG_NAME, "option")
+                
+                for option in loginopt:
+                        if self.credentials['login'] in option.text.lower():
+                            try:
+                                sencert = option.get_attribute("value")
+                                select = Select(driver.find_element(By.CSS_SELECTOR, 'select[id="certificados"]'))
+                                select.select_by_value(sencert)
+                                entrar = driver.find_element(By.XPATH, '//*[@id="submitCertificado"]')
+                                entrar.click()
+                                prt(type="log", message="confirme o websigner", row=1)
+                                sleep(10)
+                                self.websigner_confirmed = 1
+                                prt(type='log', message='Login efetuado com sucesso', row=1)
+                                sleep(2)
+                            except Exception as e:
+                                print(e)
+
+                            try:
+                                self.get_input_process(driver, wait=wait)
+                            except:
+                                prt(type='error', message='Erro ao recuperar processos do input', row=1)
+
+        elif self.loginmethod == "CPF" or self.loginmethod == "cpf":
+            driver.get("https://consultasaj.tjam.jus.br/sajcas/login")
+            sleep(3)
+
+            userlogin = driver.find_element(By. CSS_SELECTOR, '#usernameForm')
+            userlogin.click()
+            userlogin.send_keys(self.credentials['login'])
+
+            userpass = driver.find_element(By. CSS_SELECTOR, '#passwordForm')
+            userpass.click()
+            userpass.send_keys(self.credentials['password'])
+            entrar = driver.find_element(By.CSS_SELECTOR, '#pbEntrar')
+            entrar.click()
+            sleep(2)
+
+            try:
+                self.get_input_process(driver, wait=wait)
+            except:
+                prt(type='error', message='Erro ao recuperar processos do input', row=1)
 
     def get_processo(self, driver, processo_data, row, wait):
 
@@ -253,14 +274,19 @@ class ESAJCrawler:
                     processo_data = [numero, termosLista]
 
                     try:
-                        self.get_processo(driver, processo_data, row=i, wait=wait)
+                        self.get_processo(driver, processo_data, row=i-1, wait=wait)
                     except:
                         print(colored('Erro ao consultar processo {}'.format(numero), 'red'))
                         prt(type='error', message='Erro ao consultar processo {}'.format(numero), row=i)
                 if i == sheet_input.max_row:
-                    prt(type='log', message='Fim dos processos', row=i)
+                    prt(type='log', message='Fim dos processos')
                     try:
-                        os.startfile(self.output_planilha_copia)
+                        if sys.platform == 'linux':
+                            os.system('xdg-open "%s"' % self.output_dir_path)
+                            subprocess.call(["xdg-open", self.output_planilha_copia])
+                        else:
+                            os.system(f'start {self.output_dir_path}')
+                            os.startfile(self.output_planilha_copia)
                     except Exception as e:
                         prt(type='error', message=e)
         except:
