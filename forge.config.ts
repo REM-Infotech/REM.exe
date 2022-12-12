@@ -13,7 +13,10 @@ const config: ForgeConfig = {
     icon: './src/assets/icon.png'
   },
   rebuildConfig: {},
-  makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
+  makers: [
+    new MakerSquirrel({}), 
+    new MakerZIP({}, ['darwin', 'linux'])
+  ],
   plugins: [
     new WebpackPlugin({
       mainConfig,

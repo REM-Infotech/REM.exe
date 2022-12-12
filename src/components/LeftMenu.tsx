@@ -122,7 +122,7 @@ const ListMenuElement = styled.div`
     justify-content: flex-start;
     row-gap: .25rem;
 `
-const LisItemElement = styled.div((props) => css`
+const LisItemElement = styled.div<{isActive: boolean}>((props) => css`
     padding: 0.5rem 0 0.5rem 1rem;
     border-radius: 0.25rem;
     background-color: ${props.isActive? colors.secondary : 'transparent'};

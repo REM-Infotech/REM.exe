@@ -77,7 +77,7 @@ const Tabs = (props: Props) => {
     const { 
         errorsLog,
         execBot
-     } = useContext(BotSettingsContext) as BotSettingsContextType;
+     } = useContext(BotSettingsContext);
      const { token } = useAuthStore(state => ({ token: state.token }))
     const [value, setValue] = useState<number>(0);
 
@@ -115,7 +115,7 @@ const Tabs = (props: Props) => {
                     variant='contained'
                     disableElevation
                     endIcon={<PowerSettingsNewIcon />}
-                    onClick={() => downloadBots(token)}
+                    onClick={() => execBot()}
                 >
                     Ligar robô
                 </Button>

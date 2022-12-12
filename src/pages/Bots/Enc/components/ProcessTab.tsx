@@ -25,7 +25,7 @@ const ProcessTab = (props: Props) => {
     setRows,
     errorsLog,
     setErrorsLog 
-  } = useContext(BotSettingsContext) as BotSettingsContextType;
+  } = useContext(BotSettingsContext);
 
   const fetchData = async(file: File) => {
     const data = await readXLSX(file)

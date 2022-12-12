@@ -20,8 +20,9 @@ interface Links {
         inf: string,
         par: string,
         enc: string,
-        and: string
+        and: string,
+        [key: string]: string
     },
     settings: string,
-    logout: string
+    logout: string,
 }

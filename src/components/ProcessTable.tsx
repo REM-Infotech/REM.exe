@@ -55,8 +55,8 @@ const ProcessTable = (props: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.rows.length ? props.rows.map((row) => (
-            <StyledTableRow key={row.npu}>
+          {props.rows.length ? props.rows.map((row, index) => (
+            <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {row.npu}
               </StyledTableCell>

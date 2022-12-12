@@ -1,6 +1,4 @@
-import { Bot } from '../types/Bots';
-
-export const bots: Bot[] = [
+export const bots: any = [
     {
       id: 1,
       title: 'Adicionar andamento',

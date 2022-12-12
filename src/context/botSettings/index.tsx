@@ -28,18 +28,33 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
     const [errorsLog, setErrorsLog] = useState<ErrorLog[]>([])
 
     const execBot = async() => {
+        if(!file) {
+            alert('Adicione a planilha')
+
+            return
+        } 
+
+        const credentialsFormated = `${credentials.login}>!>${credentials.password}`
+        setErrorsLog([])
+
         let options = {
             pythonOptions: ['-u'], // get print results in real-time
             scriptPath: 'src/scripts/',
-            args: ['value1', 'value2', 'value3']
+            args: [credentialsFormated, file.path, 'value3']
         };
-        let pyshell = new PythonShell('test.py', options);
+        let pyshell = new PythonShell('crawler_esaj_movimentacao.py', options);
     
     
         pyshell.on('message', function (message) {
+            if(message.indexOf(']>')==-1) {
+                console.log(message)
+                return
+            }
             const [messageData, messageLog] = message.split(']>')
-            const [type, hour] = messageData.replace('<[','').split(',')
+            const [type, row, hour] = messageData.replace('<[','').split(',')
+
             console.log(messageLog, hour)
+
             if(type=='error') {
                 setErrorsLog(errors => [...errors, { cells: [messageLog, hour] }])
             }
