@@ -42,23 +42,20 @@ const GridItem = (props: Props) => {
         }}
     >
         <CardMedia
-            component="img"
-            height="100"
-            image={getBotImage(props.bot.plataform)}
-            alt={props.bot.plataform}
+            component="div"
+            // height="100"
+            // image={getBotImage(props.bot.plataform)}
+            // alt={props.bot.plataform}
             sx={{
-                backgroundColor: colors.primary_light
+                backgroundColor: colors.primary_light,
+                backgroundImage: `url(${getBotImage(props.bot.plataform)})`,
+                height: 100,
+                width: '100%'
             }}
-        />
+        >
+                    <ButtonDownloadBot bot={props.bot} />
+        </CardMedia>
         <CardContent>
-            {/* {props.bot.chips.map(chip => 
-                <Chip 
-                    key={chip.link}
-                    label={chip.label}
-                    onClick={() => console.log(chip.link)}
-                    sx={{marginRight: '.25rem'}}
-                />
-            )} */}
             <Typography variant="h5" component="div" gutterBottom>
                 {props.bot.title}
             </Typography>
@@ -71,10 +68,11 @@ const GridItem = (props: Props) => {
         </CardContent>
       <CardActions
         sx={{
-            width: '100%'
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column'
         }}
       >
-        <ButtonDownloadBot bot={props.bot} />
         <Button 
             size="large"
             variant='contained'

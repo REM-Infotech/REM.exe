@@ -1,6 +1,6 @@
 type DownloadedBotsState = {
     saved: {
-        [key: string]: Boolean
+        [key: string]: boolean
     },
     setSaved: (botId: Number) => void
 }
