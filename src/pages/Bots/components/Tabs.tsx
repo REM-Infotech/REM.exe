@@ -6,7 +6,7 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { BotSettingsContext } from '../../../context/botSettings';
 import { BotSettingsContextType, ErrorLog } from '../../../context/botSettings/botSettings';
 import { colors } from '../../../service/theme';
-import { downloadBots } from '../../../service/downloadBots';
+import { downloadBots } from '../../../service/createBotFile';
 import useAuthStore from '../../../context/authStore';
 
 type Props = {

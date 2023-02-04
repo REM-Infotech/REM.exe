@@ -31,7 +31,8 @@ export const loginAction = async(
 }
 
 export const downloadBotAction = async(
-    token: string | null
+    token: string | null,
+    body: { link: String; }
 ) => {
     let res: any = {
         data: null,
@@ -42,9 +43,9 @@ export const downloadBotAction = async(
         token: token
     }
 
-    await axios.post(`/bots/download`, null, { headers })
+    await axios.post(`/bots/download`, body, { headers })
     .then(response => {
-        res.data = response.data
+        res.data = response.data.content
     })
     .catch(e => {
         res.error = e.response?.data.message? e.response.data.message : e.message

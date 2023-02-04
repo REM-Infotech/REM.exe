@@ -1,12 +1,13 @@
 import { Button, Card, CardActions, CardContent, Chip, Zoom, Typography, CardMedia } from '@mui/material';
 import React from 'react'
-import { Bot, Chip as ChipType } from '../../../types/Bots';
+import { Bot, Chip as ChipType } from '../../../types/bot';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { links } from '../../../constants/link';
 import { getBotImage } from '../../../service/utils';
 import { colors } from '../../../service/theme';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import ButtonDownloadBot from './ButtonDownloadBot';
 
 type Props = {
     bot: Bot,
@@ -73,6 +74,7 @@ const GridItem = (props: Props) => {
             width: '100%'
         }}
       >
+        <ButtonDownloadBot bot={props.bot} />
         <Button 
             size="large"
             variant='contained'

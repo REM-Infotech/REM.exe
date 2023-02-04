@@ -86,7 +86,7 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
             args: [credentialsFormated, file.path, 'value3']
         };
 
-        let pyshell = new PythonShell('crawler_esaj_movimentacao.py', options);
+        let pyshell = new PythonShell('crawler_esaj_capa.py', options);
     
         setErrorsLog([])
         setIsRunning(true)

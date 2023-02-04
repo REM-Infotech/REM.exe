@@ -1,4 +1,4 @@
-import { Bot } from "../types/Bots"
+import { Bot } from "../types/bot"
 import { getAllBotsAction } from "../service/api"
 import React, { useState, useEffect } from 'react'
 import { TUseGetBots, TGetBots, TReturnBots } from "../types/useGetBots"

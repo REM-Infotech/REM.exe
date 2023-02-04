@@ -1,4 +1,4 @@
-import { Bot } from "./Bots"
+import { Bot } from "./bot"
 
 type TGetBots = () => Promise<any>
 
