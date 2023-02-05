@@ -3,14 +3,14 @@ import { downloadBotAction } from '../service/api';
 import useAuthStore from '../context/authStore';
 import { Bot } from '../types/bot';
 import { IBot, TUseDownloadBot } from '../types/useDownloadBot';
-import { createBotFile } from '../service/createBotFile';
+import { createBotFile, deleteBotFile } from '../service/createBotFile';
 import useDownloadedBotsStore from '../context/downloadedBotsStore';
 
 const useDownloadBot: TUseDownloadBot = () => {
     const { token } = useAuthStore(state => ({ token: state.token }));
-    const { setSaved } = useDownloadedBotsStore(state => ({ setSaved: state.setSaved }))
-    const [isLoading, setIsLoading] = useState<Boolean>(false);
-    const [hasError, setHasError] = useState<Boolean>(false);
+    const { setSaved, removeSaved } = useDownloadedBotsStore(state => ({ setSaved: state.setSaved, removeSaved: state.removeSaved }))
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [hasError, setHasError] = useState<boolean>(false);
 
     const download = async(bot: Bot) => {
         setIsLoading(true);
@@ -23,7 +23,6 @@ const useDownloadBot: TUseDownloadBot = () => {
             ...bot,
             content: response.data
         }
-        console.log(botFile);
 
         await createBotFile(botFile)
             .then(data => setSaved(botFile.id))
@@ -36,7 +35,21 @@ const useDownloadBot: TUseDownloadBot = () => {
 
     }
 
-    return { download, isLoading, hasError }
+    const removeDownload = async(bot: Bot) => {
+        setIsLoading(true);
+        const botFile: IBot = {
+            ...bot,
+            content: null
+        }
+
+        await deleteBotFile(botFile)
+            .then(res => removeSaved(bot.id))
+            .catch(err => setHasError(true));
+
+        setIsLoading(false);
+    }
+
+    return { download, isLoading, hasError, removeDownload }
 }
 
 export default useDownloadBot;

@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { leftMenuActives } from '../../constants/leftMenuActives'
 import LeftMenu from '../../components/LeftMenu'
 import styled from 'styled-components'
 import GridItem from './components/GridItem'
-import useGetBots from '../../hooks/useGetBots'
 import { CircularProgress } from '@mui/material';
+import { AllBotsCacheContext } from '../../context/allBotsCache'
 
 type Props = {}
 
 const Home = (props: Props) => {
-  const { bots, isLoading, error } = useGetBots();
+  const { bots, isLoading, error } = useContext(AllBotsCacheContext);
 
   if(isLoading) {
     return (
