@@ -10,6 +10,7 @@ import useAuthStore from './context/authStore';
 import UserRoutes from './routes/UserRoutes';
 import useCreateTheme from './hooks/useCreateTheme';
 import useVerifyIfTokenIsExpired from './hooks/useVerifyTokenExpired';
+import AllBotsCacheProvider from './context/allBotsCache';
 
 type Props = {}
 
@@ -25,18 +26,20 @@ const App = (props: Props) => {
 
   return (
     <Container>
-      <ThemeProvider theme={themeDefault}>
-        <MemoryRouter initialEntries={['/']}>
-          <CssBaseline />
-          <Navbar>
-            <>
-              {!user && <NoAuthRoutes />}
-              {user && <UserRoutes />}
-            </>
-          </Navbar>
-          <Footer />
-        </MemoryRouter>
-      </ThemeProvider>
+      <AllBotsCacheProvider>
+        <ThemeProvider theme={themeDefault}>
+          <MemoryRouter initialEntries={['/']}>
+            <CssBaseline />
+            <Navbar>
+              <>
+                {!user && <NoAuthRoutes />}
+                {user && <UserRoutes />}
+              </>
+            </Navbar>
+            <Footer />
+          </MemoryRouter>
+        </ThemeProvider>
+      </AllBotsCacheProvider>
     </Container>
   )
 }

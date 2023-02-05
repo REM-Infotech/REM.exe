@@ -19,7 +19,7 @@ const createBotsFolder = () => {
       }
 }
 
-const createBotFile: (bot: IBot) => Promise<Boolean> = async(bot: IBot) => {
+const createBotFile: (bot: IBot) => Promise<boolean> = async(bot: IBot) => {
   const nameFile = bot.link.replace(/\//g, '');
 
   return new Promise((resolve, reject) => {
@@ -34,4 +34,20 @@ const createBotFile: (bot: IBot) => Promise<Boolean> = async(bot: IBot) => {
   })
 }
 
-export { createBotFile }
+const deleteBotFile: (bot: IBot) => Promise<boolean> = async(bot: IBot) => {
+  const nameFile = bot.link.replace(/\//g, '');
+
+  return new Promise((resolve, reject) => {
+    fs.unlink(nameFile, (err: any) => {
+      if (err) {
+        console.error(err)
+        return reject(false)
+      }
+
+      return resolve(true)
+    })
+  })
+
+}
+
+export { createBotFile, deleteBotFile }

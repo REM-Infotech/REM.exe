@@ -82,7 +82,7 @@ const BotSettingsProvider: React.FC<BotSettingsProviderProps> = ({ children }) =
         const credentialsFormated = `${credentials.login}>!>${credentials.password}`
         const options = {
             pythonOptions: ['-u'], // get print results in real-time
-            scriptPath: 'src/scripts/',
+            // scriptPath: 'src/scripts/',
             args: [credentialsFormated, file.path, 'value3']
         };
 
